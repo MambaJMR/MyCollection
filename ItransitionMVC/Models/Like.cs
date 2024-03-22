@@ -6,8 +6,8 @@ namespace ItransitionMVC.Models
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public int LikeCount { get; set; }
-        public CustomCollectionItem collectionItem { get; set; }
+        public int ItemId { get; set; }
+        public CustomCollectionItem CollectionItem { get; set; }
 
     }
 }

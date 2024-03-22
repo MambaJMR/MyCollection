@@ -14,7 +14,6 @@ builder.Services.AddControllersWithViews();
 
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
-//builder.Configuration.AddJsonFile("cloud.json");
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection(nameof(CloudinarySettings)));
 builder.Services.AddScoped<ICustomCollectionRepository, CustomCollectionRepository>();
 builder.Services.AddScoped<ICustomCollectionService, CustomCollectionService>();

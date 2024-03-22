@@ -8,6 +8,7 @@ namespace ItransitionMVC.Models
         public int UserId { get; set; }
         public string CommentValue { get; set; }
         public DateTime CommentCreateDate { get; set; }
+        public int ItemId { get; set; }
         public CustomCollectionItem CollectionItem { get; set; }
     }
 }
