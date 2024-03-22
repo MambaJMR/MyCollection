@@ -1,0 +1,29 @@
+﻿@model CustomCollection
+
+
+<div>
+    <table class="container table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        <a href="/Home/ItemView/@item.Id">@item.Name</a>
+                    </td>
+                    <td>
+                        @item.Description
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

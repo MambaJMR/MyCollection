@@ -1,0 +1,51 @@
+﻿@model List<CustomCollection>;
+
+@{
+    ViewData["Title"] = "WebCollection";
+}
+<div>
+    <h1>My colletions</h1>
+</div>
+<div>
+    <a class="btn btn-success" asp-controller="CustomCollection" asp-action="CreateCollection">New collection</a>
+    <a class="btn btn-light" asp-controller="Item" asp-action="CreateItem">New Item</a>
+</div>
+<table class="container table">
+    <thead>
+        <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Type Collection</th>
+            <th scope="col">Description</th>
+            <th scope="col">Name</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <div class="card" style="width: 10rem;">
+                        <img src="@item.ImageUrl" class="card-img-top" alt="...">
+                    </div>
+                </td>
+                <td>
+                    @item.typeCollection
+                </td>
+                <td>
+                    @item.Description
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="CustomCollection" asp-action="ItemsCollection" asp-route-id="@item.Id">@item.Name</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="CustomCollection" asp-action="UpdateCollection" asp-route-id="@item.Id">Edit</a>
+                </td>
+                <td>
+                    <a class="btn btn-danger" asp-controller="CustomCollection" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                 </td>
+            </tr>
+        }
+    </tbody>
+</table>
