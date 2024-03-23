@@ -1,11 +1,12 @@
 ﻿using ItransitionMVC.Code.DataBase.Mapping;
 using ItransitionMVC.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ItransitionMVC.Code.DataBase
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<User>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -13,6 +14,7 @@ namespace ItransitionMVC.Code.DataBase
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new UserMap());
             modelBuilder.ApplyConfiguration(new CustomCollectionMap());
             modelBuilder.ApplyConfiguration(new CustomCollectionItemMap());
             modelBuilder.ApplyConfiguration(new LikeMap());
