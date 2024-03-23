@@ -2,7 +2,7 @@
 
 <h2>Вход в приложение</h2>
 <form method="post" asp-controller="Account" asp-action="Login"
-      asp-route-returnUrl="@Model.ReturnUrl">
+      >
     <div asp-validation-summary="ModelOnly"></div>
     <div>
         <label asp-for="Email"></label><br />
@@ -22,3 +22,5 @@
         <input type="submit" value="Enter" />
     </div>
 </form>
+
+@* asp-route-returnUrl="@Model.ReturnUrl" *@

@@ -5,10 +5,11 @@ namespace ItransitionMVC.Interfaces
 {
     public interface ICustomCollectionRepository
     {
-        Task<CustomCollection> Create(CollectionDTO collect, string image);
+        Task<CustomCollection> Create(string userId, CollectionDTO collect, string image);
         Task<List<CustomCollection>> Get();
-        Task<CustomCollection> GetById(int id);
+        Task<CustomCollection> GetById(Guid id);
+        Task<List<CustomCollection>> GetUserCollections(string userId);
         Task<int> UpDate(CollectionDTO customCollection);
-        Task<int> Delete(int id);
+        Task<Guid> Delete(Guid id);
     }
 }

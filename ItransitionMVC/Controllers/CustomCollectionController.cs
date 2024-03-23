@@ -2,10 +2,12 @@
 using ItransitionMVC.Models;
 using ItransitionMVC.ModelViews;
 using ItransitionMVC.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ItransitionMVC.Controllers
 {
+    [Authorize]
     public class CustomCollectionController : Controller
     {
         readonly ICustomCollectionService _customCollectionService;
@@ -16,15 +18,15 @@ namespace ItransitionMVC.Controllers
         }
 
         [HttpGet]
-        [Route("CustomCollection/Collections")]
-        public async Task<IActionResult> Collections()
+        //[Route("CustomCollection/Collections")]
+        public async Task<IActionResult> Collections(string userId)
         {
-            var collections = await _customCollectionService.GetCollections();
+            var collections = await _customCollectionService.GetUserCollections(userId);
             return View(collections);
         }
         [HttpGet]
-        [Route("CustomCollection/ItemsCollection/{id}")]
-        public async Task<IActionResult> ItemsCollection(int id)
+        //[Route("CustomCollection/ItemsCollection/{id}")]
+        public async Task<IActionResult> ItemsCollection(Guid id)
         {
             var collection = await _customCollectionService.GetCollectionById(id);
             return View(collection);
@@ -35,10 +37,10 @@ namespace ItransitionMVC.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateCollection(CollectionDTO customCollection)
+        public async Task<IActionResult> CreateCollection(string userId, CollectionDTO customCollection)
         {
-            await _customCollectionService.CreateCustomCollection(customCollection);
-            return View("Collections");
+            await _customCollectionService.CreateCustomCollection(userId, customCollection);
+            return RedirectToAction("Collections");
         }
         [HttpGet]
         public IActionResult UpdateCollection(int id)
@@ -54,7 +56,7 @@ namespace ItransitionMVC.Controllers
             return View(collection);
         }
         
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             await _customCollectionService.DeleteCustomCollection(id);
             return RedirectToAction("Collections");

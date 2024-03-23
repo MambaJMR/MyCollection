@@ -6,9 +6,9 @@ namespace ItransitionMVC.Interfaces
     public interface ICollectionItemRepository
     {
         Task<CustomCollectionItem> Create(ItemDto item);
-        Task<int> Delete(int id);
+        Task<Guid> Delete(Guid id);
         Task<List<CustomCollectionItem>> Get();
-        Task<CustomCollectionItem> GetById(int id);
+        Task<CustomCollectionItem> GetById(Guid id);
         Task<int> UpDate(CustomCollectionItem item);
     }
 }

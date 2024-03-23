@@ -17,14 +17,16 @@ namespace ItransitionMVC.Services
 
         public async Task<List<CustomCollection>> GetCollections() =>
             await _repository.Get();
-
-        public async Task<CustomCollection> GetCollectionById(int id) =>
+        public async Task<List<CustomCollection>> GetUserCollections(string userId) =>
+            await _repository.GetUserCollections(userId);
+        
+        public async Task<CustomCollection> GetCollectionById(Guid id) =>
             await _repository.GetById(id);
 
-        public async Task<CustomCollection> CreateCustomCollection(CollectionDTO customCollection)
+        public async Task<CustomCollection> CreateCustomCollection(string userId,CollectionDTO customCollection)
         {
             var imageUrl = _upLoadImage.UploadImage(customCollection.file);
-            return await _repository.Create(customCollection, imageUrl);
+            return await _repository.Create(userId, customCollection, imageUrl);
         }
 
         public async Task<int> UpdateCustomCollection(CollectionDTO collection)
@@ -33,7 +35,7 @@ namespace ItransitionMVC.Services
             return await _repository.UpDate(collection);
         }
 
-        public async Task<int> DeleteCustomCollection(int id)
+        public async Task<Guid> DeleteCustomCollection(Guid id)
         {
             return await _repository.Delete(id);
         }

@@ -11,7 +11,7 @@ namespace ItransitionMVC.Services
         {
             _itemRepository = itemRepository;
         }
-        public async Task<CustomCollectionItem> GetItemById(int id)
+        public async Task<CustomCollectionItem> GetItemById(Guid id)
         {
             return await _itemRepository.GetById(id);
         }
@@ -31,7 +31,7 @@ namespace ItransitionMVC.Services
             return await _itemRepository.UpDate(collectionItem);
         }
 
-        public async Task<int> DeleteItem(int id)
+        public async Task<Guid> DeleteItem(Guid id)
         {
             return await _itemRepository.Delete(id);
         }

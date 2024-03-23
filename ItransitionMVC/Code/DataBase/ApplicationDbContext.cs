@@ -6,15 +6,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ItransitionMVC.Code.DataBase
 {
-    public class ApplicationDbContext : IdentityDbContext<User>
+    public class ApplicationDbContext : IdentityDbContext<CustomUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UserMap());
             modelBuilder.ApplyConfiguration(new CustomCollectionMap());
             modelBuilder.ApplyConfiguration(new CustomCollectionItemMap());
             modelBuilder.ApplyConfiguration(new LikeMap());
@@ -28,6 +28,7 @@ namespace ItransitionMVC.Code.DataBase
         public DbSet<Like> Likes { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        //public override DbSet<CustomUser> Users { get; set; }
 
     }
 }

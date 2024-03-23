@@ -1,15 +1,10 @@
-﻿@model List<CustomCollection>;
+﻿@model CustomCollection;
 
 <div class="container">
-    <form method="post" asp-controller="Item" asp-action="CreateItem">
+    <form method="post" asp-controller="Item" asp-action="CreateItem" asp-route-collectionId="@Model.Id">
+
         <input type="text" class="form-control w-25 mt-2" placeholder="name" name="name" />
         <input type="text" class="form-control w-25 mt-2" placeholder="description" name="description" />
-        <select class="form-select w-25 mt-2" name="collectionId">
-            @foreach(var item in Model)
-            {
-                <option value="@item.Id" >@item.Name</option>
-            }
-        </select>
         <button type="submit" class="btn btn-primary mt-2">Submit</button>
     </form>
 </div>

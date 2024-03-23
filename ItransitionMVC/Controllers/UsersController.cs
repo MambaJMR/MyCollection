@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ItransitionMVC.Controllers
 {
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {
-        UserManager<User> _userManager;
+        UserManager<CustomUser> _userManager;
 
-        public UsersController(UserManager<User> userManager)
+        public UsersController(UserManager<CustomUser> userManager)
         {
             _userManager = userManager;
         }
@@ -84,7 +84,7 @@ namespace ItransitionMVC.Controllers
         [HttpPost]
         public async Task<ActionResult> Delete(string id)
         {
-            User user = await _userManager.FindByIdAsync(id);
+            CustomUser user = await _userManager.FindByIdAsync(id);
             if (user != null)
             {
                 IdentityResult result = await _userManager.DeleteAsync(user);

@@ -1,10 +1,12 @@
 ﻿using ItransitionMVC.Interfaces;
 using ItransitionMVC.Models;
 using ItransitionMVC.ModelViews;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ItransitionMVC.Controllers
 {
+    [Authorize]
     public class ItemController : Controller
     {
         private readonly ICollectionItemService _itemService;
@@ -23,23 +25,23 @@ namespace ItransitionMVC.Controllers
 
         [HttpGet]
         [Route("/ItemCollections/{id}")]
-        public async Task<IActionResult> ItemCollections(int id)
+        public async Task<IActionResult> ItemCollections(Guid id)
         {
             var item = await _itemService.GetItemById(id);
             return View(item);
         }
 
         [HttpGet]
-        public async Task<IActionResult> CreateItem() 
+        public async Task<IActionResult> CreateItem(Guid id) 
         {
-            var collection = await _customCollectionService.GetCollections();
+            var collection = await _customCollectionService.GetCollectionById(id);
             return View(collection);
         }
         [HttpPost]
         public async Task<IActionResult> CreateItem(ItemDto collectionItem)
         {
-            var item = await _itemService.CreateItem(collectionItem);
-            return View(item);
+            await _itemService.CreateItem(collectionItem);
+            return RedirectToAction("ItemsCollection", "CustomCollection",new {id = collectionItem.CollectionId});
         }
 
         public async Task<IActionResult> Update(CustomCollectionItem collectionItem)
@@ -48,7 +50,7 @@ namespace ItransitionMVC.Controllers
             return View(item);
         }
 
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             await _itemService.DeleteItem(id);
             return RedirectToAction("AllItems");

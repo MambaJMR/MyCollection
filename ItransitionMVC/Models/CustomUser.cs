@@ -2,7 +2,7 @@
 
 namespace ItransitionMVC.Models
 {
-    public class User : IdentityUser
+    public  class CustomUser : IdentityUser
     {
         public List<CustomCollection> Collections { get; set; }
     }

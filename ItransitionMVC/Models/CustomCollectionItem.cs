@@ -1,15 +1,19 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ItransitionMVC.Models
 {
     public class CustomCollectionItem
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
+        [Required]
         public string Name { get; set; } = string.Empty;
+        [Required]
         public string Description { get; set; } = string.Empty;
-        public int CollectionId { get; set; }
+        public Guid CollectionId { get; set; }
         public CustomCollection Collection { get; set; }
-        public List<Tag>? Tags { get; set; }
+        [Required]
+        public List<Tag> Tags { get; set; }
         public List<Comment>? Comments { get; set; }
         public List<Like>? Likes { get; set; }
 

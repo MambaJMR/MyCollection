@@ -1,14 +1,14 @@
 ﻿@model List<CustomCollection>;
 
-@{
+@* @{
     ViewData["Title"] = "WebCollection";
-}
+} *@
 <div>
     <h1>My colletions</h1>
 </div>
 <div>
     <a class="btn btn-success" asp-controller="CustomCollection" asp-action="CreateCollection">New collection</a>
-    <a class="btn btn-light" asp-controller="Item" asp-action="CreateItem">New Item</a>
+    
 </div>
 <table class="container table">
     <thead>

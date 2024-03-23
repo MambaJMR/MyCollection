@@ -15,7 +15,7 @@ namespace ProjectItransition.Repositories
             _context = context;
         }
 
-        public async Task<CustomCollectionItem> GetById(int id)
+        public async Task<CustomCollectionItem> GetById(Guid id)
         {
             var item = await _context.CollectionItems.AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
             return item;
@@ -45,14 +45,14 @@ namespace ProjectItransition.Repositories
         {
             var collectionItem = await _context.CollectionItems.Where(i => i.Id == item.Id).ExecuteUpdateAsync(s => s
            .SetProperty(i => i.Name, i => item.Name)
-           .SetProperty(i => i.Description, i => item.Description));
-            //.SetProperty(i => i.Tags, i => tags));
+           .SetProperty(i => i.Description, i => item.Description)
+           .SetProperty(i => i.Tags, i => item.Tags));
 
             await _context.SaveChangesAsync();
             return collectionItem;
         }
 
-        public async Task<int> Delete(int id)
+        public async Task<Guid> Delete(Guid id)
         {
             await _context.CollectionItems.Where(i => i.Id == id).ExecuteDeleteAsync();
             await _context.SaveChangesAsync();

@@ -22,7 +22,7 @@ namespace ItransitionMVC.Controllers
         }
         [HttpGet]
         [Route("Home/customCollection/{id}")]
-        public async Task<IActionResult> CustomCollectionItems(int id)
+        public async Task<IActionResult> CustomCollectionItems(Guid id)
         {
             var collectionItems = await _customCollectionService.GetCollectionById(id);
             return View(collectionItems);
@@ -30,7 +30,7 @@ namespace ItransitionMVC.Controllers
 
         [HttpGet]
         [Route("Home/ItemView/{id}")]
-        public async Task<IActionResult> ItemView(int id)
+        public async Task<IActionResult> ItemView(Guid id)
         {
             var item = await _collectionItemService.GetItemById(id);
             return View(item);

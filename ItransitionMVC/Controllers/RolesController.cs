@@ -1,15 +1,17 @@
 ﻿using ItransitionMVC.Models;
 using ItransitionMVC.ModelViews;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ItransitionMVC.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class RolesController : Controller
     {
         RoleManager<IdentityRole> _roleManager;
-        UserManager<User> _userManager;
-        public RolesController(RoleManager<IdentityRole> roleManager, UserManager<User> userManager)
+        UserManager<CustomUser> _userManager;
+        public RolesController(RoleManager<IdentityRole> roleManager, UserManager<CustomUser> userManager)
         {
             _roleManager = roleManager;
             _userManager = userManager;
@@ -53,11 +55,9 @@ namespace ItransitionMVC.Controllers
 
         public async Task<IActionResult> Edit(string userId)
         {
-            // получаем пользователя
-            User user = await _userManager.FindByIdAsync(userId);
+            CustomUser user = await _userManager.FindByIdAsync(userId);
             if (user != null)
             {
-                // получем список ролей пользователя
                 var userRoles = await _userManager.GetRolesAsync(user);
                 var allRoles = _roleManager.Roles.ToList();
                 ChangeRoleViewModel model = new ChangeRoleViewModel
@@ -76,7 +76,7 @@ namespace ItransitionMVC.Controllers
         public async Task<IActionResult> Edit(string userId, List<string> roles)
         {
             // получаем пользователя
-            User user = await _userManager.FindByIdAsync(userId);
+            CustomUser user = await _userManager.FindByIdAsync(userId);
             if (user != null)
             {
                 // получем список ролей пользователя

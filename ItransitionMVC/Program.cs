@@ -17,7 +17,7 @@ builder.Services.AddControllersWithViews();
 
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
-builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentity<CustomUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection(nameof(CloudinarySettings)));
 
 builder.Services.AddScoped<ICustomCollectionRepository, CustomCollectionRepository>();
@@ -47,10 +47,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}"
 );
 
-//app.Run(async context =>
-//{
-//    var userManager =  app.Services.GetRequiredService<UserManager<User>>();
-//    var rolesManager = app.Services.GetRequiredService<RoleManager<IdentityRole>>();
-//    await RoleInitializer.InitializeAsync(userManager, rolesManager);
-//});
+
 app.Run();
