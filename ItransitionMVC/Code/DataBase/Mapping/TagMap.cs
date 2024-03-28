@@ -1,4 +1,4 @@
-﻿using ItransitionMVC.Models;
+﻿using ItransitionMVC.Models.Item;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -10,7 +10,7 @@ namespace ItransitionMVC.Code.DataBase.Mapping
         {
             builder.HasKey(x => x.Id);
             builder.HasOne(i => i.Item)
-                .WithMany(c => c.Tags)
+                .WithMany(c => c.ItemTags)
                 .HasForeignKey(i => i.ItemId);
         }
     }

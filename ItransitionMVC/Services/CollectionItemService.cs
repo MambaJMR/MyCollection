@@ -1,5 +1,5 @@
-﻿using ItransitionMVC.Interfaces;
-using ItransitionMVC.Models;
+﻿using ItransitionMVC.Interfaces.IItem;
+using ItransitionMVC.Models.Item;
 using ItransitionMVC.ModelViews;
 
 namespace ItransitionMVC.Services
@@ -26,14 +26,14 @@ namespace ItransitionMVC.Services
             return await _itemRepository.Create(collectionItem);
         }
 
-        public async Task<int> UpDateItem(CustomCollectionItem collectionItem)
+        public async Task UpDateItem(CustomCollectionItem collectionItem)
         {
-            return await _itemRepository.UpDate(collectionItem);
+             await _itemRepository.UpDate(collectionItem);
         }
 
-        public async Task<Guid> DeleteItem(Guid id)
+        public async Task DeleteItem(Guid id)
         {
-            return await _itemRepository.Delete(id);
+            await _itemRepository.Delete(id);
         }
     }
 }

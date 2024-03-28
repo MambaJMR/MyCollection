@@ -1,9 +1,6 @@
 ﻿
-using System.Text;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using Dropbox.Api;
-using Dropbox.Api.Files;
 using ItransitionMVC.Settings;
 using Microsoft.Extensions.Options;
 

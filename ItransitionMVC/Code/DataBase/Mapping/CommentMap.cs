@@ -1,7 +1,6 @@
-﻿using ItransitionMVC.Models;
+﻿using ItransitionMVC.Models.Item;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using static Dropbox.Api.TeamLog.EventCategory;
 
 namespace ItransitionMVC.Code.DataBase.Mapping
 {
@@ -11,7 +10,7 @@ namespace ItransitionMVC.Code.DataBase.Mapping
         {
             builder.HasKey(x => x.Id);
             builder.HasOne(i => i.CollectionItem)
-                .WithMany(c => c.Comments)
+                .WithMany(c => c.ItemComments)
                 .HasForeignKey(i => i.ItemId);
         }
     }

@@ -1,5 +1,5 @@
-﻿using ItransitionMVC.Interfaces;
-using ItransitionMVC.Models;
+﻿using ItransitionMVC.Interfaces.ICollection;
+using ItransitionMVC.Models.Collection;
 using ItransitionMVC.ModelViews;
 
 namespace ItransitionMVC.Services

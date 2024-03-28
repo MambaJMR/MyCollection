@@ -1,11 +1,15 @@
-﻿@model CustomCollection
-<div>
-    <a class="btn btn-success" asp-controller="Item" asp-action="CreateItem" asp-route-id="@Model.Id">New Item</a>
-    <table class="container table">
+﻿@model ItransitionMVC.Models.Collection.CustomCollection
+
+<div class="container-fluid">
+    <a class="btn btn-success mt-2" asp-controller="Item" asp-action="CreateItem" asp-route-id="@Model.Id">New Item</a>
+    <table class=" table">
         <thead>
             <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Description</th>
+                <th scope="col">Likes</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -13,13 +17,28 @@
             {
                 <tr>
                     <td>
-                        <a href="/Home/ItemView/@item.Id">@item.Name</a>
+                        <a class="btn btn-primary" asp-controller="Home" asp-action="ItemView" asp-route-id="@item.Id">@item.Name</a>
                     </td>
                     <td>
                         @item.Description
                     </td>
-                    <td></td>
-                    <td></td>
+                    
+                    <td>
+                        @if (item.ItemLikes == null)
+                        {
+                            <p>0</p>
+                        }
+                        else
+                        {
+                            @item.ItemLikes.Count()
+                        }
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" asp-controller="Item" asp-action="Update" asp-route-id="@item.Id" asp-route-collectionId="@Model.Id">Edit</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" asp-controller="Item" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
                 </tr>
             }
 

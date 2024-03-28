@@ -1,8 +1,8 @@
-﻿namespace ProjectItransition.Models.CollectionModels
+﻿namespace ItransitionMVC.Models.Collection
 {
     public enum TypeCollection
     {
-        Books = 1,
+        Books,
         Movies,
         Games,
         Foods

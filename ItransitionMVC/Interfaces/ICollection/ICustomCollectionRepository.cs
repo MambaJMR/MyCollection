@@ -1,7 +1,8 @@
-﻿using ItransitionMVC.Models;
+﻿using ItransitionMVC.Models.Collection;
+using ItransitionMVC.Models.Item;
 using ItransitionMVC.ModelViews;
 
-namespace ItransitionMVC.Interfaces
+namespace ItransitionMVC.Interfaces.ICollection
 {
     public interface ICustomCollectionRepository
     {

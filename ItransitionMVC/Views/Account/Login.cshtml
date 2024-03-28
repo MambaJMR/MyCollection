@@ -1,26 +1,26 @@
 ﻿@model ItransitionMVC.ModelViews.LoginViewModel
 
-<h2>Вход в приложение</h2>
-<form method="post" asp-controller="Account" asp-action="Login"
-      >
-    <div asp-validation-summary="ModelOnly"></div>
-    <div>
-        <label asp-for="Email"></label><br />
-        <input asp-for="Email" />
-        <span asp-validation-for="Email"></span>
-    </div>
-    <div>
-        <label asp-for="Password"></label><br />
-        <input asp-for="Password" />
-        <span asp-validation-for="Password"></span>
-    </div>
-    <div>
-        <label asp-for="RememberMe"></label><br />
-        <input asp-for="RememberMe" />
-    </div>
-    <div>
-        <input type="submit" value="Enter" />
-    </div>
-</form>
+<div class="container-fluid">
+    <h2>Login</h2>
+    <form method="post" asp-controller="Account" asp-action="Login">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div>
+            <label asp-for="Email" class="form-label"></label><br />
+            <input asp-for="Email" class="form-control w-25" />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div>
+            <label asp-for="Password" class="form-label w-25"></label><br />
+            <input asp-for="Password" class="form-control w-25" />
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div>
+            <label asp-for="RememberMe"></label><br />
+            <input asp-for="RememberMe" />
+        </div>
+        <div>
+            <input type="submit" class="btn btn-primary m-2" value="Enter" />
+        </div>
+    </form>
+</div>
 
-@* asp-route-returnUrl="@Model.ReturnUrl" *@

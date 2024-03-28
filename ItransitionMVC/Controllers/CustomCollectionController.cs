@@ -1,8 +1,11 @@
-﻿using ItransitionMVC.Interfaces;
+﻿using ItransitionMVC.Interfaces.ICollection;
+using ItransitionMVC.Interfaces.IElementService;
+using ItransitionMVC.Interfaces.IItem;
 using ItransitionMVC.Models;
 using ItransitionMVC.ModelViews;
 using ItransitionMVC.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Connections;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ItransitionMVC.Controllers
@@ -11,24 +14,38 @@ namespace ItransitionMVC.Controllers
     public class CustomCollectionController : Controller
     {
         readonly ICustomCollectionService _customCollectionService;
+        readonly IStringElementService _stringElementService;
+        readonly IIntElementService _intElementService;
+        readonly IBoolElementService _boolElementService;
+        readonly IDateElementService _dateElementService;
         
-        public CustomCollectionController(ICustomCollectionService customCollectionService)
+        public CustomCollectionController(
+            ICustomCollectionService customCollectionService, 
+            IStringElementService stringElementService,
+            IIntElementService intElementService,
+            IBoolElementService boolElementService,
+            IDateElementService dateElementService
+            )
         {
             _customCollectionService = customCollectionService;
+            _stringElementService = stringElementService;  
+            _intElementService = intElementService;
+            _boolElementService = boolElementService;
+            _dateElementService = dateElementService;
         }
 
         [HttpGet]
-        //[Route("CustomCollection/Collections")]
         public async Task<IActionResult> Collections(string userId)
         {
             var collections = await _customCollectionService.GetUserCollections(userId);
             return View(collections);
         }
         [HttpGet]
-        //[Route("CustomCollection/ItemsCollection/{id}")]
+
         public async Task<IActionResult> ItemsCollection(Guid id)
         {
             var collection = await _customCollectionService.GetCollectionById(id);
+            
             return View(collection);
         }
         [HttpGet]
@@ -39,14 +56,22 @@ namespace ItransitionMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCollection(string userId, CollectionDTO customCollection)
         {
-            await _customCollectionService.CreateCustomCollection(userId, customCollection);
-            return RedirectToAction("Collections");
+            var collection = await _customCollectionService.CreateCustomCollection(userId, customCollection);
+            _stringElementService.CreateStrElem(customCollection.ElementName, collection.Id);
+            _intElementService.CreateIntElem(customCollection.IntName, collection.Id);
+            _boolElementService.CreateBoolElem(customCollection.BoolName, collection.Id);
+            _dateElementService.CreateDateElem(customCollection.DateName, collection.Id);
+
+            return RedirectToAction("Collections", "CustomCollection", new { userId });
+        }
+        [HttpPost]
+        public async Task<IActionResult> UploadImage(IFormFile file)
+        {
+            return Ok();
         }
         [HttpGet]
-        public IActionResult UpdateCollection(int id)
+        public IActionResult UpdateCollection()
         {
-            //var collection = await _customCollectionService.GetCollectionById(id);
-            //return View(collection);
             return View();
         }
         [HttpPost]
@@ -59,7 +84,7 @@ namespace ItransitionMVC.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             await _customCollectionService.DeleteCustomCollection(id);
-            return RedirectToAction("Collections");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

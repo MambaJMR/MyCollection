@@ -1,11 +1,9 @@
 ﻿using ItransitionMVC.Code.DataBase;
-using ItransitionMVC.Interfaces;
-using ItransitionMVC.Models;
+using ItransitionMVC.Interfaces.ICollection;
+using ItransitionMVC.Models.Collection;
+using ItransitionMVC.Models.Item;
 using ItransitionMVC.ModelViews;
-using ItransitionMVC.Services;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ProjectItransition.Models.CollectionModels;
 
 
 namespace ItransitionMVC.Repositories
@@ -13,28 +11,52 @@ namespace ItransitionMVC.Repositories
     public class CustomCollectionRepository : ICustomCollectionRepository
     {
         private readonly ApplicationDbContext _context;
+        
+
         public CustomCollectionRepository(ApplicationDbContext context)
         {
             _context = context;
+            
         }
+        //public List<CustomCollectionItem> FreeTextOnDescription(string search)
+        //{
+        //    //LoadTags();
+        //    var collection = _context.Collections
+        //        .Where(x => EF.Functions.FreeText(x.Description, search))
+        //        .Include(x => x.Items).ToList();
+        //    List<CustomCollectionItem> items = new();
+        //    collection.ForEach(x => { items.AddRange(x.Items.ToList()); });
+        //    return items;
+        //}
 
         public async Task<CustomCollection> GetById(Guid id)
         {
-            var item = await _context.Collections.AsNoTracking().Include(c => c.Items).FirstOrDefaultAsync(i => i.Id == id);
+            var item = await _context.Collections.AsNoTracking()
+                .Include(c => c.Items)
+                .Include(x => x.ItemElements)
+                .Include(x => x.ItemIntElements)
+                .Include(x => x.ItemBoolElements)
+                .Include(x => x.ItemDateElements)
+                .FirstOrDefaultAsync(i => i.Id == id);
             return item;
         }
 
         public async Task<List<CustomCollection>> GetUserCollections(string userId)
         {
+            
             var collection = await _context.Collections.AsNoTracking()
                 .Where(x => x.UserName == userId)
                 .Include(x => x.Items)
+                .Include(x => x.ItemElements)
+                .Include(x => x.ItemIntElements)
+                .Include(x => x.ItemBoolElements)
+                .Include(x => x.ItemDateElements)
                 .ToListAsync();
             return collection;
         }
         public async Task<List<CustomCollection>> Get()
         {
-            var collections = await _context.Collections.AsNoTracking().Include(c => c.Items).ToListAsync();
+            var collections = await _context.Collections.AsNoTracking().ToListAsync();
             return collections;
         }
 
@@ -48,8 +70,10 @@ namespace ItransitionMVC.Repositories
                 typeCollection = collect.typeCollection,
                 UserName = userId
             };
+            
             await _context.Collections.AddAsync(collection);
             await _context.SaveChangesAsync();
+
 
             return collection;
         }

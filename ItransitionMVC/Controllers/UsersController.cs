@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.InteropServices;
 
 namespace ItransitionMVC.Controllers
 {
@@ -91,5 +92,37 @@ namespace ItransitionMVC.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public async Task<ActionResult> Block(string id)
+        {
+            CustomUser user = await _userManager.FindByIdAsync(id);
+
+            if (user != null)
+            {
+                //user.LockoutEnabled = true;
+                //await _userManager.GetLockoutEnabledAsync(user);
+                user.LockoutEnd = DateTime.Now.AddYears(5).ToUniversalTime();
+                await _userManager.GetLockoutEndDateAsync(user);
+                await _userManager.UpdateAsync(user);
+                
+            }
+            return RedirectToAction("Index");
+        }
+
+        public async Task<ActionResult> Unblock(string id)
+        {
+            CustomUser user = await _userManager.FindByIdAsync(id);
+
+            if (user != null)
+            {
+                //user.LockoutEnabled = true;
+                //await _userManager.GetLockoutEnabledAsync(user);
+                user.LockoutEnd = null;
+                await _userManager.GetLockoutEndDateAsync(user);
+                await _userManager.UpdateAsync(user);
+            }
+            return RedirectToAction("Index");
+        }
+
     }
 }

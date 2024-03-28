@@ -1,12 +1,11 @@
-﻿@model CustomCollection
-
-
-<div>
-    <table class="container table">
+﻿@model ItransitionMVC.Models.Collection.CustomCollection
+<div class="container-fluid">
+    <table class="table">
         <thead>
             <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Description</th>
+                <th scope="col">Likes</th>
             </tr>
         </thead>
         <tbody>
@@ -14,13 +13,12 @@
             {
                 <tr>
                     <td>
-                        <a href="/Home/ItemView/@item.Id">@item.Name</a>
+                        <a class="btn btn-primary" asp-controller="Home" asp-action="ItemView" asp-route-id="@item.Id">@item.Name</a>
                     </td>
                     <td>
                         @item.Description
                     </td>
-                    <td></td>
-                    <td></td>
+                    
                 </tr>
             }
 

@@ -1,31 +1,49 @@
-﻿
+﻿@model ItransitionMVC.Models.Item.CustomCollectionItem;
 
-<div class="container">
-    <form method="post" asp-controller="CustomCollection" asp-action="CreateCollection" asp-route-userid="@User.Identity.Name" enctype="multipart/form-data">
-        <input type="text" class="form-control w-25 mt-2" placeholder="Collection name" name="name" />
-        <input type="text" class="form-control w-25 mt-2" placeholder="Description" name="description"/>
-        <select id="typeCollection" class="form-select w-25 mt-2" name="typeCollection">
-            <option value="Book">Book</option>
-            <option value="Movies">Movies</option>
-            <option value="Games">Games</option>
-            <option value="Foods">Foods</option>
-        </select>
+<div class="container-fluid">
+    <form route="#" method="post" asp-controller="CustomCollection" asp-action="CreateCollection" asp-route-userid="@User.Identity.Name" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" class="form-control w-25 mt-2" placeholder="Collection name" name="name" />
+                <input type="text" class="form-control w-25 mt-2" placeholder="Description" name="description" />
+                <select id="typeCollection" class="form-select w-25  mt-2" name="typeCollection">
+                    <option value="Book" selected="selected">Book</option>
+                    <option value="Movies">Movies</option>
+                    <option value="Games">Games</option>
+                    <option value="Foods">Foods</option>
+                </select>
+                <div class="my-dropzone">
+                    <input class="dropzone file mt-2 " type="file" name="file" />
+                </div>
+            </div>
+            <div class="col-sm">
+                <select id="selector" class="form-select w-25  mt-2">
+                    <option value="" selected disabled hidden>Field</option>
+                    <option value="elementName">Text</option>
+                    <option value="intName">Numeric</option>
+                    <option value="boolName">Logic</option>
+                    <option value="dateName">Date</option>
+                </select>
+                
+                <div id="inp"></div>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary mt-2">Submit</button>
+            </div>
+        </div>
         
-        <div class="btn-group mt-2" role="group" aria-label="Basic checkbox toggle button group">
-            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btncheck1">Дополнительное текстовое поле</label>
-
-            <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btncheck2">Дополнительное числовое поле</label>
-
-            <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btncheck3">Дополнительные Чекбоксы</label>
-        </div>
-        <div>
-            <input type="file" class="btn btn-light mt-2" name="file" />
-        </div>
-        <div>
-            <button type="submit" class="btn btn-primary mt-2">Submit</button>
-        </div>
     </form>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    let inp = document.getElementById('inp')
+    $("#selector").on("change", () => {
+        let input = document.createElement("input");
+        input.className = 'form-control w-25 m-2'
+        input.name = $("#selector option:selected").val();
+        input.placeholder = $("#selector option:selected").text();
+        inp.appendChild(input);
+    })
+    
+</script>

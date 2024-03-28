@@ -1,10 +1,75 @@
-﻿@model CustomCollection;
+﻿@model ItransitionMVC.ModelViews.ItemView;
 
-<div class="container">
-    <form method="post" asp-controller="Item" asp-action="CreateItem" asp-route-collectionId="@Model.Id">
 
-        <input type="text" class="form-control w-25 mt-2" placeholder="name" name="name" />
-        <input type="text" class="form-control w-25 mt-2" placeholder="description" name="description" />
+<div class="container-fluid">
+    <h1>New item</h1>
+    <form method="post" asp-controller="Item" asp-action="CreateItem" asp-route-collectionId="@Model.CollectionId">
+        <div class="row">
+            <div class="col-sm text-center">
+                <input type="text" class="form-control mt-2" placeholder="Name" name="name" />
+                <input type="text" class="form-control mt-2" placeholder="Description" name="description" />
+                <select id="tags" name="tags" class="form-control" multiple="multiple">
+                </select>
+            </div>
+            <div class="col-sm text-center">
+                @foreach (var item in Model.ElementString)
+                {
+                    <label>@item.Name</label>
+                    <input type="text" class="form-control mt-2" name="strValue" />
+                }
+            </div>
+            <div class="col-sm text-center">
+                @foreach (var item in Model.ElementInt)
+                {
+                    <label>@item.IntName</label>
+                    <input type="number" class="form-control mt-2" name="intValue" />
+                }
+            </div>
+            <div class="col-sm text-center">
+                @foreach (var item in Model.ElementBool)
+                {
+                    <p class="mb-2">@item.BoolName</p>
+                    <input type="checkbox" class="form-check-input" role="switch" name="boolValue" />
+                }
+            </div>
+            <div class="col-sm text-center">
+                @foreach (var item in Model.ElementDate)
+                {
+                    <label>@item.DateName</label>
+                    <input type="date" class="form-control mt-2" name="dateValue" id="@item" />
+                }
+            </div>
+        </div>
+        
+        
         <button type="submit" class="btn btn-primary mt-2">Submit</button>
     </form>
 </div>
+
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    
+    let allTags = new Array();
+    let htmlItem = document.createElement('div');
+    @if (Model.Tags != null)
+    {
+        foreach (var item in Model.Tags)
+        {
+            @:htmlItem.innerHTML = "@item";
+            @:allTags.push(htmlItem.innerHTML);
+        }
+    }
+    $("#tags").select2({
+        data: allTags,
+        tags: true,
+        tokenSeparators: [',', ' '],
+        insertTag: function (data, tag) {
+            data.push(tag);
+        }
+    })
+
+</script>

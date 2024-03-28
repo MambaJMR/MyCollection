@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using ItransitionMVC.Models.Collection;
+using Microsoft.AspNetCore.Identity;
 
 namespace ItransitionMVC.Models
 {
