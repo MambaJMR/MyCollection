@@ -1,6 +1,6 @@
 ﻿using ItransitionMVC.Interfaces.ICollection;
 using ItransitionMVC.Interfaces.IItem;
-using ItransitionMVC.ModelViews;
+using ItransitionMVC.Services;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -11,20 +11,24 @@ namespace ItransitionMVC.Controllers
     {
         readonly ICustomCollectionService _customCollectionService;
         readonly ICollectionItemService _collectionItemService;
+        readonly TagService _tagService;
 
 
-        public HomeController(ICustomCollectionService customCollectionService, ICollectionItemService collectionItemService)
+        public HomeController(ICustomCollectionService customCollectionService, ICollectionItemService collectionItemService, TagService tagService)
         {
             _customCollectionService = customCollectionService;
             _collectionItemService = collectionItemService;
+            _tagService = tagService;
             
         }
 
         public async Task<IActionResult> Index()
         {
             var collections = await _customCollectionService.GetCollections();
+            
             return View(collections);
         }
+
         [HttpGet]
         public async Task<IActionResult> CustomCollectionItems(Guid id)
         {
@@ -37,18 +41,7 @@ namespace ItransitionMVC.Controllers
         public async Task<IActionResult> ItemView(Guid id)
         {
             var item = await _collectionItemService.GetItemById(id);
-            //var itemDto = new ItemDto
-            //{
-            //    Name = item.Name,
-            //    Collection = item.Collection,
-            //    BoolValue = item.BoolValue,
-            //    IntValue = item.IntValueInItem,
-            //    DateValue = item.DateValue,
-            //    StrValue = item.StringValue,
-            //    Description = item.Description,
-            //    Likes = item.ItemLikes,
-            //    Comments = item.ItemComments
-            //};
+           
             return View(item);
         }
 

@@ -3,7 +3,6 @@ using ItransitionMVC.Models;
 using ItransitionMVC.Models.Collection;
 using ItransitionMVC.Models.Elements;
 using ItransitionMVC.Models.Item;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +13,7 @@ namespace ItransitionMVC.Code.DataBase
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
             //Database.EnsureDeleted();
-            Database.EnsureCreated();
+           // Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

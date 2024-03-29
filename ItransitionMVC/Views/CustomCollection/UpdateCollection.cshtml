@@ -1,26 +1,15 @@
 ﻿<div class="container-fluid">
     <form method="post" asp-controller="CustomCollection" asp-action="UpdateCollection" enctype="multipart/form-data">
-        <input type="text" class="form-control w-25 mt-2" placeholder="Collection name" name="name"/>
-        <input type="text" class="form-control w-25 mt-2" placeholder="Description" name="description"/>
-        <select id="typeCollection" class="form-select w-25 mt-2" name="typeCollection">
+        <label>Name</label>
+        <input type="text" class="form-control w-25 mt-2" required placeholder="Collection name" name="name"/>
+        <label>Description</label>
+        <input type="text" class="form-control w-25 mt-2" required placeholder="Description" name="description"/>
+        <select id="typeCollection" class="form-select w-25 mt-2" required name="typeCollection">
             <option value="Book">Book</option>
             <option value="Movies">Movies</option>
             <option value="Games">Games</option>
             <option value="Foods">Foods</option>
         </select>
-        <div class="btn-group mt-2" role="group" aria-label="Basic checkbox toggle button group">
-            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btncheck1">Дополнительное текстовое поле</label>
-
-            <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btncheck2">Дополнительное числовое поле</label>
-
-            <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btncheck3">Дополнительные Чекбоксы</label>
-        </div>
-        <div>
-            <input type="file" class="btn btn-light mt-2" name="file" />
-        </div>
         <div>
             <button type="submit" class="btn btn-primary mt-2">Submit</button>
         </div>

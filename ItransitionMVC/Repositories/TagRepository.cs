@@ -1,6 +1,7 @@
 ﻿using ItransitionMVC.Code.DataBase;
 using ItransitionMVC.Interfaces;
 using ItransitionMVC.Models.Item;
+using Microsoft.EntityFrameworkCore;
 
 namespace ItransitionMVC.Repositories
 {
@@ -12,7 +13,6 @@ namespace ItransitionMVC.Repositories
         {
             _dbContext = dbContext;
         }
-
         public async Task<Tag> CreateTags(string tag, Guid id)
         {
             var newTag = new Tag
@@ -20,8 +20,14 @@ namespace ItransitionMVC.Repositories
                 ItemId = id,
                 Name = tag
             };
-
+            await  _dbContext.AddAsync(newTag);
+            await  _dbContext.SaveChangesAsync();
             return newTag;
+        }
+
+        public async Task<List<Tag>> GetAll()
+        {
+            return await _dbContext.Tags.AsNoTracking().ToListAsync();
         }
     }
 }

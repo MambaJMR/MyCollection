@@ -6,13 +6,13 @@ namespace ItransitionMVC.ModelViews
 {
     public class ItemDto
     {
-        [Required]
+        
         public Guid Id { get; set; }
+        [Required]
         public string Name { get; set; } = string.Empty;
         [Required]
         public string Description { get; set; } = string.Empty;
         public Guid CollectionId { get; set; }
-        [Required]
         public string UserId { get; set; }
         public List<Like> Likes {  get; set; } = new List<Like>();
         public List<string> Tags { get; set; } = new List<string>();

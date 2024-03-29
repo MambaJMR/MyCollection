@@ -1,5 +1,6 @@
 ﻿using ItransitionMVC.Interfaces;
 using ItransitionMVC.Interfaces.ICollection;
+using ItransitionMVC.Interfaces.IItem;
 using ItransitionMVC.Models.Item;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.ContentModel;
@@ -9,32 +10,30 @@ namespace ItransitionMVC.Controllers
     public class SearchController : Controller
     {
         private readonly IElasticService _elasticService;
-        public SearchController(IElasticService elasticService)
+        private readonly ICollectionItemService _itemService;
+        public SearchController(IElasticService elasticService, ICollectionItemService itemService)
         {
             _elasticService = elasticService;
+            _itemService = itemService;
         }
         public async Task<IActionResult> Search(string searchText)
         {
-           // await _elasticService.CreateElascticCollection();
+            List<CustomCollectionItem> items = new List<CustomCollectionItem>();
             var result = await _elasticService.ElasticSearch(searchText);
-            if(result == null)
+
+            if (result == null)
             {
                 return RedirectToAction("Index", "Home");
             }
-            return View(result);
+
+            foreach (var i in result)
+            {
+                var item = await _itemService.GetItemById(i.ItemId);
+                items.Add(item);
+            }
+
+            return View(items);
         }
 
-        //private IEnumerable<CustomCollectionItem> SearchItems(string search)
-        //{
-        //    List<CustomCollectionItem> items = new List<CustomCollectionItem>();
-        //    items.AddRange(_repository.FreeTextOnDescription(search));
-        //    //items.AddRange(_collectionRepo.FreeTextOnNameCollection(search));
-        //    //items.AddRange(_itemRepo.FreeTextOnNameItem(search));
-        //    //items.AddRange(_itemRepo.FreeTextOnComment(search));
-        //    //items.AddRange(_itemRepo.FreeTextOnMarkdown(search));
-        //    //items.AddRange(_itemRepo.FreeTextOnString(search));
-        //    //items.AddRange(_tagRepo.FreeTextOnNameTags(search));
-        //    return items.Distinct();
-        //}
     }
 }

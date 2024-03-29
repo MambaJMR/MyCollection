@@ -48,7 +48,6 @@ namespace ItransitionMVC.Controllers
         public async Task<IActionResult> CreateItem(Guid id) 
         {
             var collection = await _customCollectionService.GetCollectionById(id);
-            //var item = await _itemService.GetItemById();
             var itemView = new ItemView
             {
                 CollectionId = collection.Id,
@@ -65,8 +64,10 @@ namespace ItransitionMVC.Controllers
         public async Task<IActionResult> CreateItem(ItemDto collectionItem)
         {
             var item = await _itemService.CreateItem(collectionItem);
+            await _tagService.TagCreate(collectionItem.Tags, item.Id);
             var getItem = await _itemService.GetItemById(item.Id);
-            var tags = await _tagService.TagCreate(collectionItem.Tags, item.Id);
+            
+            
             await _elasticService.CreateElascticCollection(CreateModel(getItem));
             return RedirectToAction("ItemsCollection", "CustomCollection",new {id = collectionItem.CollectionId});
         }
@@ -88,7 +89,7 @@ namespace ItransitionMVC.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        private ElasticModel CreateModel(CustomCollectionItem customCollectionItem /*List<Tag> tags*/)
+        private ElasticModel CreateModel(CustomCollectionItem customCollectionItem)
         {
             string tags = string.Empty;
             foreach (var tag in customCollectionItem.ItemTags)

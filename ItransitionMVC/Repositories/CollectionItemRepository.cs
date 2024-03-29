@@ -44,14 +44,15 @@ namespace ProjectItransition.Repositories
             return items;
         }
 
-        public void CreateItem(CustomCollectionItem item)
-        {
-            _context.CollectionItems.Add(item);
-            _context.SaveChanges();
-        }
+        
         public async Task<CustomCollectionItem> Create(ItemDto item)
         {
+            List<DateTime> dateToUtc = new List<DateTime>();
 
+            foreach (var date in item.DateValue)
+            {
+                dateToUtc.Add (date.ToUniversalTime());
+            }
             var colectionItem = new CustomCollectionItem
             {
                 Name = item.Name,
@@ -61,7 +62,7 @@ namespace ProjectItransition.Repositories
                 StrValue = item.StrValue,
                 IntValue = item.IntValue,
                 BoolValue = item.BoolValue,
-                DateValue = item.DateValue
+                DateValue = dateToUtc
             };
             await _context.CollectionItems.AddAsync(colectionItem);
             await _context.SaveChangesAsync();
@@ -75,8 +76,6 @@ namespace ProjectItransition.Repositories
                 .ExecuteUpdateAsync(s => s
            .SetProperty(i => i.Name, i => item.Name)
            .SetProperty(i => i.Description, i => item.Description));
-           //.SetProperty(i => i.ItemTags, i => item.ItemTags));
-
             await _context.SaveChangesAsync();
         }
 

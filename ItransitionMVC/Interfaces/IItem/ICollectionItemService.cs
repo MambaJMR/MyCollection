@@ -7,7 +7,7 @@ namespace ItransitionMVC.Interfaces.IItem
     {
         Task<CustomCollectionItem> CreateItem(ItemDto collectionItem);
         Task DeleteItem(Guid id);
-        Task<List<CustomCollectionItem>> GetAllItems();
+        Task<IEnumerable<CustomCollectionItem>> GetAllItems();
         Task<CustomCollectionItem> GetItemById(Guid id);
         Task UpDateItem(CustomCollectionItem collectionItem);
     }

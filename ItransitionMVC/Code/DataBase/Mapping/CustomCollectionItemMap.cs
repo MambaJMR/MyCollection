@@ -27,10 +27,6 @@ namespace ItransitionMVC.Code.DataBase.Mapping
                .WithOne(i => i.Item)
                .HasForeignKey(i => i.ItemId);
 
-            //builder.HasMany(c => c.stringElements)
-            //   .WithOne(i => i.Item)
-            //   .HasForeignKey(i => i.ItemId);
-
         }
     }
 }

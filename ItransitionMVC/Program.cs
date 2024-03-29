@@ -15,26 +15,33 @@ using ItransitionMVC.Services.CommentsService;
 using ItransitionMVC.Services.ElementsServise;
 using ItransitionMVC.Settings;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
-
 using ProjectItransition.Repositories;
-using System.Text.Json.Serialization;
+using System.Globalization;
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews().AddNewtonsoftJson(options =>
-    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-);
-
-// .AddJsonOptions(x =>
-//x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+builder.Services.AddControllersWithViews().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
 
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-//builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
-builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(connectionString));
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
 builder.Services.AddIdentity<CustomUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection(nameof(CloudinarySettings)));
 builder.Services.Configure<ElasticSettings>(builder.Configuration.GetSection(nameof(ElasticSettings)));
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[]
+    {
+       new CultureInfo("ru"),
+       new CultureInfo("en-Us")
+    };
+    options.DefaultRequestCulture = new RequestCulture("en-Us");
+    options.SupportedUICultures = supportedCultures;
+});
 builder.Services.AddSignalR();
+
 builder.Services.AddScoped<ICustomCollectionRepository, CustomCollectionRepository>();
 builder.Services.AddScoped<ICustomCollectionService, CustomCollectionService>();
 
@@ -55,6 +62,7 @@ builder.Services.AddScoped<IBoolElementService, BoolElementService>();
 
 builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<IElasticService, ElasticService>();
+
 builder.Services.AddScoped<UpLoadImageService>();
 builder.Services.AddScoped<TagService>();
 
@@ -63,6 +71,7 @@ builder.Services.AddScoped<ICommentsRepository, CommentsRepository>();
 builder.Services.AddScoped<ICommentsService, CommentsService>();
 
 var app = builder.Build();
+app.UseRequestLocalization();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

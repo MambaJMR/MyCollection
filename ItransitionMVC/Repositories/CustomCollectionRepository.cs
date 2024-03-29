@@ -11,24 +11,10 @@ namespace ItransitionMVC.Repositories
     public class CustomCollectionRepository : ICustomCollectionRepository
     {
         private readonly ApplicationDbContext _context;
-        
-
         public CustomCollectionRepository(ApplicationDbContext context)
         {
             _context = context;
-            
         }
-        //public List<CustomCollectionItem> FreeTextOnDescription(string search)
-        //{
-        //    //LoadTags();
-        //    var collection = _context.Collections
-        //        .Where(x => EF.Functions.FreeText(x.Description, search))
-        //        .Include(x => x.Items).ToList();
-        //    List<CustomCollectionItem> items = new();
-        //    collection.ForEach(x => { items.AddRange(x.Items.ToList()); });
-        //    return items;
-        //}
-
         public async Task<CustomCollection> GetById(Guid id)
         {
             var item = await _context.Collections.AsNoTracking()
@@ -56,7 +42,7 @@ namespace ItransitionMVC.Repositories
         }
         public async Task<List<CustomCollection>> Get()
         {
-            var collections = await _context.Collections.AsNoTracking().ToListAsync();
+            var collections = await _context.Collections.AsNoTracking().Include(i => i.Items).ToListAsync();
             return collections;
         }
 

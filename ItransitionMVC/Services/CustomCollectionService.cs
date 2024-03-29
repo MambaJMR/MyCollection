@@ -1,5 +1,6 @@
 ﻿using ItransitionMVC.Interfaces.ICollection;
 using ItransitionMVC.Models.Collection;
+using ItransitionMVC.Models.Item;
 using ItransitionMVC.ModelViews;
 
 namespace ItransitionMVC.Services
@@ -15,10 +16,16 @@ namespace ItransitionMVC.Services
 
         }
 
-        public async Task<List<CustomCollection>> GetCollections() =>
-            await _repository.Get();
-        public async Task<List<CustomCollection>> GetUserCollections(string userId) =>
-            await _repository.GetUserCollections(userId);
+        public async Task<IEnumerable<CustomCollection>> GetCollections()
+        {
+             return  await _repository.Get();
+        }
+            
+        public async Task<List<CustomCollection>> GetUserCollections(string userId)
+        {
+            return await _repository.GetUserCollections(userId);
+        }
+            
         
         public async Task<CustomCollection> GetCollectionById(Guid id) =>
             await _repository.GetById(id);

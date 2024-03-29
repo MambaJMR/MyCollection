@@ -5,7 +5,6 @@ namespace ItransitionMVC.Interfaces.IItem
 {
     public interface ICollectionItemRepository
     {
-        void CreateItem(CustomCollectionItem item);
         Task<CustomCollectionItem> Create(ItemDto item);
         Task Delete(Guid id);
         Task<List<CustomCollectionItem>> Get();

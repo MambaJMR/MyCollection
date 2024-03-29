@@ -16,7 +16,7 @@ namespace ItransitionMVC.Services
             return await _itemRepository.GetById(id);
         }
 
-        public async Task<List<CustomCollectionItem>> GetAllItems()
+        public async Task<IEnumerable<CustomCollectionItem>> GetAllItems()
         {
             return await _itemRepository.Get();
         }

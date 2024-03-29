@@ -14,14 +14,11 @@ namespace ItransitionMVC.Services
     public class ElasticService : IElasticService
     {
         private ElasticsearchClient _elastic;
-        private readonly ICustomCollectionService _customCollectionService;
-        private readonly ICollectionItemService _itemService;
-        public ElasticService(IOptions<ElasticSettings> elasticSettings, ICollectionItemService itemService)
+        public ElasticService(IOptions<ElasticSettings> elasticSettings)
         {
             string id = elasticSettings.Value.CloudId;
             string key = elasticSettings.Value.Key;
             _elastic = new ElasticsearchClient(id, new ApiKey(key));
-            _itemService = itemService;
         }
         public async Task CreateElascticCollection(ElasticModel elasticModel)
         {

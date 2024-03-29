@@ -1,12 +1,4 @@
-﻿@model List<ItransitionMVC.Models.ElasticModel>
-
-
-
-@* @{
-    ViewData["Title"] = "Title";
-} *@
-
-
+﻿@model List<ItransitionMVC.Models.Item.CustomCollectionItem>
 <div class="row">
     @if (Model.Count() > 0)
     {
@@ -35,19 +27,20 @@
                     {
                         <tr>
                             <th scope="row">
-                                <a class="btn btn-primary" asp-controller="Home" asp-action="ItemView" asp-route-id="@item.ItemId">@item.NameItem</a>
+                                <a class="btn btn-primary" asp-controller="Home" asp-action="ItemView" asp-route-id="@item.Id">@item.Name</a>
                             </th>
                             <th>
-                                <a class="btn btn-primary" asp-controller="Home" asp-action="CustomCollectionItems" asp-route-id="@item.CollectionId">@item.NameCollection</a>
+                                <a class="btn btn-primary" asp-controller="Home" asp-action="CustomCollectionItems" asp-route-id="@item.CollectionId">@item.Collection.Name</a>
                             </th>
                             <td class="align-middle">
-                                @if (item.Tags != null)
-                                {
-                                    @foreach (var tag in item.Tags)
+                                <ul>
+                                    @foreach (var tag in item.ItemTags)
                                     {
-                                        <p>@tag</p>
+                                        <li>
+                                            <a class="nav-link" asp-controller="Search" asp-action="Search" asp-route-searchText="@tag.Name">#@tag.Name</a>
+                                        </li>
                                     }
-                                }
+                                </ul>
                             </td>
                         </tr>
                     }
@@ -59,7 +52,7 @@
     {
         <div class="text-center col-12 row m-3">
             <h1 class="col-11 text-center">
-                "Nothing"
+                Nothing
             </h1>
         </div>
     }

@@ -1,5 +1,6 @@
 ﻿using ItransitionMVC.Interfaces;
 using ItransitionMVC.Models.Item;
+using Newtonsoft.Json.Linq;
 
 namespace ItransitionMVC.Services
 {
@@ -22,5 +23,11 @@ namespace ItransitionMVC.Services
 
             return tags;
         }
+
+        public async Task<IEnumerable<Tag>> GetAllTags()
+        {
+            return await _tagRepository.GetAll();
+
+        } 
     }
 }

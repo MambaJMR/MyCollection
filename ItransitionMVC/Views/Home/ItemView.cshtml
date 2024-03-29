@@ -9,13 +9,23 @@
 <div class="container-fluid">
     <h1>@Model.Name</h1> 
     </div>
+<div>
+    <h4>Description</h4>
+    <p>@Model.Description</p>
+</div>
             <div class="row mt-2">
                 <div class="form-inline col-2">
-                    <div>
-                        <h4>Description</h4>
-                         <p>@Model.Description</p>
-                    </div>
                     
+                    <div>
+                        <ul>
+                            @foreach (var tag in Model.ItemTags)
+                            {
+                                <li>
+                                    <a class="nav-link" asp-controller="Search" asp-action="Search" asp-route-searchText="@tag.Name">#@tag.Name</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
                     @if (User.Identity.IsAuthenticated)
                     {
                         <div>

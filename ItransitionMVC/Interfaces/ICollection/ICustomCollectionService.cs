@@ -9,7 +9,7 @@ namespace ItransitionMVC.Interfaces.ICollection
         Task<Guid> DeleteCustomCollection(Guid id);
         Task<CustomCollection> GetCollectionById(Guid id);
         Task<List<CustomCollection>> GetUserCollections(string userId);
-        Task<List<CustomCollection>> GetCollections();
+        Task<IEnumerable<CustomCollection>> GetCollections();
         Task<int> UpdateCustomCollection(CollectionDTO collection);
     }
 }

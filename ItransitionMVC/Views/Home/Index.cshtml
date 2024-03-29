@@ -1,15 +1,23 @@
-﻿@model List<ItransitionMVC.Models.Collection.CustomCollection>
-
+﻿@model IEnumerable<ItransitionMVC.Models.Collection.CustomCollection>
+@using Microsoft.AspNetCore.Authorization;
+@using Microsoft.AspNetCore.Identity;
+@using Microsoft.AspNetCore.Mvc.Localization;
+@inject IViewLocalizer Localizer
 @{
     ViewData["Title"] = "Home Page";
-    
+
 }
 <div class="container-fluid">
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-controller="Users" asp-action="Index" class="btn btn-outline-primary">Users</a>
+        <a asp-controller="Roles" asp-action="Index" class="btn btn-outline-primary">Roles</a>
+    }
     <a type="button" class="btn btn-success m-2" asp-controller="CustomCollection" asp-action="Collections" asp-route-userid="@User.Identity.Name">My colletions</a>
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Image</th>
+                <th>@Localizer["Image"]</th>
                 <th>Name</th>
                 <th>Type Collection</th>
                 <th>Description</th>
@@ -27,6 +35,18 @@
                     <td><a class="btn btn-primary" asp-controller="Home" asp-action="CustomCollectionItems" asp-route-id="@item.Id">@item.Name</a></td>
                     <td>@item.typeCollection</td>
                     <td>@item.Description</td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td>
+                            <a class="btn btn-primary" asp-controller="CustomCollection" asp-action="ItemsCollection" asp-route-id="@item.Id">@item.Name</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" asp-controller="CustomCollection" asp-action="UpdateCollection" asp-route-id="@item.Id">Edit</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" asp-controller="CustomCollection" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    }
                 </tr>
             }
         </tbody>

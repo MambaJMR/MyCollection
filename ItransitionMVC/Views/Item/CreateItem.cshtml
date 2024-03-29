@@ -6,8 +6,11 @@
     <form method="post" asp-controller="Item" asp-action="CreateItem" asp-route-collectionId="@Model.CollectionId">
         <div class="row">
             <div class="col-sm text-center">
-                <input type="text" class="form-control mt-2" placeholder="Name" name="name" />
-                <input type="text" class="form-control mt-2" placeholder="Description" name="description" />
+                <label>Name</label>
+                <input type="text" class="form-control mt-2" required placeholder="Name" name="name" />
+                <label>Description</label>
+                <input type="text" class="form-control mt-2" required placeholder="Description" name="description" />
+                <label>Tags</label>
                 <select id="tags" name="tags" class="form-control" multiple="multiple">
                 </select>
             </div>
@@ -15,33 +18,31 @@
                 @foreach (var item in Model.ElementString)
                 {
                     <label>@item.Name</label>
-                    <input type="text" class="form-control mt-2" name="strValue" />
+                    <input type="text" class="form-control mt-2" required name="strValue" />
                 }
             </div>
             <div class="col-sm text-center">
                 @foreach (var item in Model.ElementInt)
                 {
                     <label>@item.IntName</label>
-                    <input type="number" class="form-control mt-2" name="intValue" />
+                    <input type="number" class="form-control mt-2" required name="intValue" />
                 }
             </div>
             <div class="col-sm text-center">
                 @foreach (var item in Model.ElementBool)
                 {
                     <p class="mb-2">@item.BoolName</p>
-                    <input type="checkbox" class="form-check-input" role="switch" name="boolValue" />
+                    <input type="checkbox" class="form-check-input" required role="switch" name="boolValue" />
                 }
             </div>
             <div class="col-sm text-center">
                 @foreach (var item in Model.ElementDate)
                 {
                     <label>@item.DateName</label>
-                    <input type="date" class="form-control mt-2" name="dateValue" id="@item" />
+                    <input type="date" class="form-control mt-2" required name="dateValue" id="@item" />
                 }
             </div>
         </div>
-        
-        
         <button type="submit" class="btn btn-primary mt-2">Submit</button>
     </form>
 </div>

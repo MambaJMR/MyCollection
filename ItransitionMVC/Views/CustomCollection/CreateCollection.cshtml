@@ -4,8 +4,11 @@
     <form route="#" method="post" asp-controller="CustomCollection" asp-action="CreateCollection" asp-route-userid="@User.Identity.Name" enctype="multipart/form-data">
         <div class="row">
             <div class="col-sm">
-                <input type="text" class="form-control w-25 mt-2" placeholder="Collection name" name="name" />
-                <input type="text" class="form-control w-25 mt-2" placeholder="Description" name="description" />
+                <label asp-for="Name">Name</label><br />
+                <input type="text" class="form-control w-25 mt-2" required placeholder="Collection name" asp-for="Name" name="name" />
+                <span asp-validation-for="Name" />
+                <input type="text" class="form-control w-25 mt-2" required placeholder="Description" asp-for="Description" name="description" />
+                <span asp-validation-for="Description" />
                 <select id="typeCollection" class="form-select w-25  mt-2" name="typeCollection">
                     <option value="Book" selected="selected">Book</option>
                     <option value="Movies">Movies</option>
@@ -13,7 +16,7 @@
                     <option value="Foods">Foods</option>
                 </select>
                 <div class="my-dropzone">
-                    <input class="dropzone file mt-2 " type="file" name="file" />
+                    <input class="dropzone mt-2" type="file" name="file" required/>
                 </div>
             </div>
             <div class="col-sm">
@@ -31,19 +34,18 @@
                 <button type="submit" class="btn btn-primary mt-2">Submit</button>
             </div>
         </div>
-        
     </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 <script>
     let inp = document.getElementById('inp')
     $("#selector").on("change", () => {
         let input = document.createElement("input");
-        input.className = 'form-control w-25 m-2'
         input.name = $("#selector option:selected").val();
         input.placeholder = $("#selector option:selected").text();
         inp.appendChild(input);
     })
-    
 </script>
