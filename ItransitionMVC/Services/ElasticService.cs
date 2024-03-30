@@ -37,8 +37,12 @@ namespace ItransitionMVC.Services
                 .From(0)
                 .Size(10)
                 .Query(x => x.MultiMatch(x => x.Query(search))));
+            if(response.IsValidResponse)
+            {
                 var item = response.Documents.ToList();
                 return item;
+            }
+            return null;
         }
     }
 }

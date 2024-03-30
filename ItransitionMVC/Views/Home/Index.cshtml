@@ -64,17 +64,23 @@
             }
         </tbody>
     </table>
-
-
-    <ul>
-        @foreach(var tag in Model.Tags)
-        {
-            <li>
-                <a class="nav-link" asp-controller="Search" asp-action="Search" asp-route-searchText="@tag.Name">#@tag.Name</a>
-            </li>
-        }
-    </ul>
+    <div id="TagsCloud" class="col-9"></div>
 </div>
-
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script charset="utf-8">
+    let tags = new Array();
+    let html = document.createElement('div');
+    @foreach (var item in Model.Tags)
+    {
+        @:html.innerHTML = "@item.Name";
+        @:tags.push({ text: html.innerHTML, weight: 300, link: './Search/Search?searchText=' + html.innerHTML })
+    }
+    $(function () {
+        document.getElementById
+            $("#TagsCloud").jQCloud(tags, {
+            height: 200,
+        });
+    });
+</script>
 
