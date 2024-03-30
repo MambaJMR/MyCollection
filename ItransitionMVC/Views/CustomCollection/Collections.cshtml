@@ -9,7 +9,6 @@
             <tr>
                 <th scope="col">@Locolize.GetKey("Image")</th>
                 <th scope="col">@Locolize.GetKey("Type Collection")</th>
-                <th scope="col">@Locolize.GetKey("Description")</th>
                 <th scope="col">@Locolize.GetKey("Name")</th>
                 <th scope="col">@Locolize.GetKey("Edit")</th>
                 <th scope="col">@Locolize.GetKey("Delete")</th>
@@ -28,9 +27,6 @@
                         @Locolize.GetKey($"{item.typeCollection}")
                     </td>
                     <td>
-                        @item.Description
-                    </td>
-                    <td>
                         <a class="btn btn-primary" asp-controller="CustomCollection" asp-action="ItemsCollection" asp-route-id="@item.Id">@item.Name</a>
                     </td>
                     <td>
@@ -44,4 +40,5 @@
         </tbody>
     </table>
 </div>
+
 

@@ -94,7 +94,7 @@ namespace ItransitionMVC.Controllers
             string tags = string.Empty;
             foreach (var tag in customCollectionItem.ItemTags)
             {
-                tags += tag.Name;
+                tags += $"{tag.Name} ";
             }
             var model = new ElasticModel
             {

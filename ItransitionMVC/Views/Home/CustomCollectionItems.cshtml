@@ -1,10 +1,10 @@
 ﻿@model ItransitionMVC.Models.Collection.CustomCollection
 <div class="container-fluid">
+    <div id="Description">@Model.Description</div>
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">@Locolize.GetKey("Name")</th>
-                <th scope="col">@Locolize.GetKey("Description")</th>
             </tr>
         </thead>
         <tbody>
@@ -13,9 +13,6 @@
                 <tr>
                     <td>
                         <a class="btn btn-primary" asp-controller="Home" asp-action="ItemView" asp-route-id="@item.Id">@item.Name</a>
-                    </td>
-                    <td>
-                        @item.Description
                     </td>
                     @if (User.IsInRole("Admin"))
                     {
@@ -31,4 +28,11 @@
         </tbody>
     </table>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+    let markText = document.getElementById("Description");
+    let text = markText.textContent
+    console.log(text);
+    markText.innerHTML = marked.parse(text)
+    
+</script>

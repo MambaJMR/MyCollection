@@ -13,7 +13,6 @@
                 <th>@Locolize.GetKey("Image")</th>
                 <th>@Locolize.GetKey("Name")</th>
                 <th>@Locolize.GetKey("Type Collection")</th>
-                <th>@Locolize.GetKey("Description")</th>
             </tr>
         </thead>
         <tbody>
@@ -27,7 +26,6 @@
                     </td>
                     <td><a class="btn btn-primary" asp-controller="Home" asp-action="CustomCollectionItems" asp-route-id="@item.Id">@item.Name</a></td>
                     <td>@Locolize.GetKey($"{item.typeCollection}")</td>
-                    <td>@item.Description</td>
                     @if (User.IsInRole("Admin"))
                     {
                         <td>
@@ -77,4 +75,6 @@
         }
     </ul>
 </div>
+
+
 

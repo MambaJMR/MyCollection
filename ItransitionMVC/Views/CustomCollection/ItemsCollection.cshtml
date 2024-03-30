@@ -2,11 +2,11 @@
 
 <div class="container-fluid">
     <a class="btn btn-success mt-2" asp-controller="Item" asp-action="CreateItem" asp-route-id="@Model.Id">@Locolize.GetKey("New item")</a>
+    <div id="Description">@Model.Description</div>
     <table class=" table">
         <thead>
             <tr>
                 <th scope="col">@Locolize.GetKey("Name")</th>
-                <th scope="col">@Locolize.GetKey("Description")</th>
                 <th scope="col">@Locolize.GetKey("Edit")</th>
                 <th scope="col">@Locolize.GetKey("Delete")</th>
             </tr>
@@ -17,9 +17,6 @@
                 <tr>
                     <td>
                         <a class="btn btn-primary" asp-controller="Home" asp-action="ItemView" asp-route-id="@item.Id">@item.Name</a>
-                    </td>
-                    <td>
-                        @item.Description
                     </td>
                     <td>
                         <a class="btn btn-primary" asp-controller="Item" asp-action="Update" asp-route-id="@item.Id" asp-route-collectionId="@Model.Id">@Locolize.GetKey("Edit")</a>
@@ -33,3 +30,11 @@
         </tbody>
     </table>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+    let markText = document.getElementById("Description");
+    let text = markText.textContent
+    console.log(text);
+    markText.innerHTML = marked.parse(text)
+
+</script>

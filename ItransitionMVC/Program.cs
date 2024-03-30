@@ -53,8 +53,8 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 builder.Services.AddControllersWithViews();
 
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-//builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
-builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(connectionString));
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
+//builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(connectionString));
 builder.Services.AddIdentity<CustomUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection(nameof(CloudinarySettings)));
 builder.Services.Configure<ElasticSettings>(builder.Configuration.GetSection(nameof(ElasticSettings)));
