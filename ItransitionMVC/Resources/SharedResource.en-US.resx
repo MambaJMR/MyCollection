@@ -117,7 +117,133 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Block" xml:space="preserve">
+    <value>Block</value>
+  </data>
+  <data name="Books" xml:space="preserve">
+    <value>Books</value>
+  </data>
+  <data name="Collection" xml:space="preserve">
+    <value>Collection</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Edit role for user" xml:space="preserve">
+    <value>Edit role for user</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="Foods" xml:space="preserve">
+    <value>Foods</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Games</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="Likes" xml:space="preserve">
+    <value>Likes</value>
+  </data>
+  <data name="Localization" xml:space="preserve">
+    <value>Localization</value>
+  </data>
+  <data name="Logic" xml:space="preserve">
+    <value>Logic</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
+  </data>
+  <data name="Movies" xml:space="preserve">
+    <value>Movies</value>
+  </data>
+  <data name="My colletions" xml:space="preserve">
+    <value>My colletions</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="New collection" xml:space="preserve">
+    <value>New collection</value>
+  </data>
+  <data name="New item" xml:space="preserve">
+    <value>New item</value>
+  </data>
+  <data name="New Role" xml:space="preserve">
+    <value>New Role</value>
+  </data>
+  <data name="Not blocked" xml:space="preserve">
+    <value>Not blocked</value>
+  </data>
+  <data name="Nothing" xml:space="preserve">
+    <value>Nothing</value>
+  </data>
+  <data name="Numeric" xml:space="preserve">
+    <value>Numeric</value>
+  </data>
+  <data name="Optional field" xml:space="preserve">
+    <value>Optional field</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Password Confirm" xml:space="preserve">
+    <value>Password сonfirm</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember me</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="Type Collection" xml:space="preserve">
+    <value>Type Collection</value>
+  </data>
+  <data name="UnBlock" xml:space="preserve">
+    <value>UnBlock</value>
+  </data>
+  <data name="User List" xml:space="preserve">
+    <value>User List</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
   </data>
 </root>

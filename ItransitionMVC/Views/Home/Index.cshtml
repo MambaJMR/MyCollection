@@ -1,30 +1,23 @@
-﻿@model IEnumerable<ItransitionMVC.Models.Collection.CustomCollection>
-@using Microsoft.AspNetCore.Authorization;
-@using Microsoft.AspNetCore.Identity;
-@using Microsoft.AspNetCore.Mvc.Localization;
-@inject IViewLocalizer Localizer
-@{
-    ViewData["Title"] = "Home Page";
+﻿@model ItransitionMVC.ModelViews.IndexViewModel;
 
-}
 <div class="container-fluid">
     @if (User.IsInRole("Admin"))
     {
-        <a asp-controller="Users" asp-action="Index" class="btn btn-outline-primary">Users</a>
-        <a asp-controller="Roles" asp-action="Index" class="btn btn-outline-primary">Roles</a>
+        <a asp-controller="Users" asp-action="Index" class="btn btn-outline-primary">@Locolize.GetKey("Users")</a>
+        <a asp-controller="Roles" asp-action="Index" class="btn btn-outline-primary">@Locolize.GetKey("Roles")</a>
     }
-    <a type="button" class="btn btn-success m-2" asp-controller="CustomCollection" asp-action="Collections" asp-route-userid="@User.Identity.Name">My colletions</a>
+    <a type="button" class="btn btn-success m-2" asp-controller="CustomCollection" asp-action="Collections" asp-route-userid="@User.Identity.Name">@Locolize.GetKey("My colletions")</a>
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>@Localizer["Image"]</th>
-                <th>Name</th>
-                <th>Type Collection</th>
-                <th>Description</th>
+                <th>@Locolize.GetKey("Image")</th>
+                <th>@Locolize.GetKey("Name")</th>
+                <th>@Locolize.GetKey("Type Collection")</th>
+                <th>@Locolize.GetKey("Description")</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.Collections)
             {
                 <tr>
                     <td>
@@ -33,7 +26,7 @@
                         </div>
                     </td>
                     <td><a class="btn btn-primary" asp-controller="Home" asp-action="CustomCollectionItems" asp-route-id="@item.Id">@item.Name</a></td>
-                    <td>@item.typeCollection</td>
+                    <td>@Locolize.GetKey($"{item.typeCollection}")</td>
                     <td>@item.Description</td>
                     @if (User.IsInRole("Admin"))
                     {
@@ -41,15 +34,47 @@
                             <a class="btn btn-primary" asp-controller="CustomCollection" asp-action="ItemsCollection" asp-route-id="@item.Id">@item.Name</a>
                         </td>
                         <td>
-                            <a class="btn btn-primary" asp-controller="CustomCollection" asp-action="UpdateCollection" asp-route-id="@item.Id">Edit</a>
+                            <a class="btn btn-primary" asp-controller="CustomCollection" asp-action="UpdateCollection" asp-route-id="@item.Id">@Locolize.GetKey("Edit")</a>
                         </td>
                         <td>
-                            <a class="btn btn-danger" asp-controller="CustomCollection" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            <a class="btn btn-danger" asp-controller="CustomCollection" asp-action="Delete" asp-route-id="@item.Id">@Locolize.GetKey("Delete")</a>
                         </td>
                     }
                 </tr>
             }
         </tbody>
     </table>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Locolize.GetKey("Name")
+                </th>
+                <th>
+                    @Locolize.GetKey("Description")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model.CollectionItems)
+            {
+                <tr>
+                    <td><a class="btn btn-primary" asp-controller="Home" asp-action="ItemView" asp-route-id="@item.Id">@item.Name</a></td>
+                    <td>@item.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    <ul>
+        @foreach(var tag in Model.Tags)
+        {
+            <li>
+                <a class="nav-link" asp-controller="Search" asp-action="Search" asp-route-searchText="@tag.Name">#@tag.Name</a>
+            </li>
+        }
+    </ul>
 </div>
 

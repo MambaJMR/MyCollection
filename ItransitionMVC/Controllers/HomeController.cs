@@ -1,7 +1,8 @@
 ﻿using ItransitionMVC.Interfaces.ICollection;
 using ItransitionMVC.Interfaces.IItem;
-using ItransitionMVC.Services;
 using Microsoft.AspNetCore.Mvc;
+using ItransitionMVC.Interfaces;
+using Microsoft.AspNetCore.Localization;
 
 
 namespace ItransitionMVC.Controllers
@@ -11,22 +12,19 @@ namespace ItransitionMVC.Controllers
     {
         readonly ICustomCollectionService _customCollectionService;
         readonly ICollectionItemService _collectionItemService;
-        readonly TagService _tagService;
+        readonly IOrderByService _orderByService;
 
-
-        public HomeController(ICustomCollectionService customCollectionService, ICollectionItemService collectionItemService, TagService tagService)
+        public HomeController(ICustomCollectionService customCollectionService, ICollectionItemService collectionItemService, IOrderByService orderByService)
         {
             _customCollectionService = customCollectionService;
             _collectionItemService = collectionItemService;
-            _tagService = tagService;
+            _orderByService = orderByService;
             
         }
-
         public async Task<IActionResult> Index()
         {
-            var collections = await _customCollectionService.GetCollections();
-            
-            return View(collections);
+            var indexModel = await _orderByService.OrderByHomeIndex();
+            return View(indexModel);
         }
 
         [HttpGet]
@@ -43,6 +41,15 @@ namespace ItransitionMVC.Controllers
             var item = await _collectionItemService.GetItemById(id);
            
             return View(item);
+        }
+
+        public IActionResult ChangeLanguage(string culture)
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)));
+            new CookieOptions() { Expires = DateTimeOffset.UtcNow.AddYears(1) };
+
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 
     }

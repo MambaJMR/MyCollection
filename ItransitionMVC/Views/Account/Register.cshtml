@@ -1,25 +1,25 @@
 ﻿@model ItransitionMVC.ModelViews.RegisterViewModel
 <div class="container-fluid">
-    <h2>Register</h2>
+    <h2>@Locolize.GetKey("Register")</h2>
     <form method="post" asp-controller="Account" asp-action="Register">
         <div asp-validation-summary="ModelOnly"></div>
         <div>
-            <label asp-for="Email" class="form-label w-25"></label><br />
-            <input asp-for="Email" class="form-control w-25" />
+            <label asp-for="Email" class="form-label w-50"></label><br />
+            <input asp-for="Email" class="form-control w-50" />
             <span asp-validation-for="Email"></span>
         </div>
         <div>
-            <label asp-for="Password" class="form-label w-25"></label><br />
-            <input asp-for="Password" class="form-control w-25" />
+            <label asp-for="Password" class="form-label w-50">@Locolize.GetKey("Password")</label><br />
+            <input asp-for="Password" class="form-control w-50" />
 
         </div>
         <div>
-            <label asp-for="PasswordConfirm" class="form-label w-25"></label><br />
-            <input asp-for="PasswordConfirm" class="form-control w-25" />
+            <label asp-for="PasswordConfirm" class="form-label w-50">@Locolize.GetKey("Password Confirm")</label><br />
+            <input asp-for="PasswordConfirm" class="form-control w-50" />
             <span asp-validation-for="PasswordConfirm"></span>
         </div>
         <div>
-            <input type="submit" class="btn btn-primary m-2" value="Register" />
+            <input type="submit" class="btn btn-primary m-2" value="@Locolize.GetKey("Register")" />
         </div>
     </form>
 </div>

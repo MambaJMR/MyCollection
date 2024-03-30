@@ -3,8 +3,8 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
+                <th scope="col">@Locolize.GetKey("Name")</th>
+                <th scope="col">@Locolize.GetKey("Description")</th>
             </tr>
         </thead>
         <tbody>
@@ -20,15 +20,14 @@
                     @if (User.IsInRole("Admin"))
                     {
                         <td>
-                            <a class="btn btn-primary" asp-controller="Item" asp-action="Update" asp-route-id="@item.Id" asp-route-collectionId="@Model.Id">Edit</a>
+                            <a class="btn btn-primary" asp-controller="Item" asp-action="Update" asp-route-id="@item.Id" asp-route-collectionId="@Model.Id">@Locolize.GetKey("Edit")</a>
                         </td>
                         <td>
-                            <a class="btn btn-danger" asp-controller="Item" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            <a class="btn btn-danger" asp-controller="Item" asp-action="Delete" asp-route-id="@item.Id">@Locolize.GetKey("Delete")</a>
                         </td>
                     }
                 </tr>
             }
-
         </tbody>
     </table>
 </div>

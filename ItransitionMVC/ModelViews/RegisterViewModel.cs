@@ -10,13 +10,11 @@ namespace ItransitionMVC.ModelViews
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Пароль")]
         public string Password { get; set; }
 
         [Required]
-        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
+        [Compare("Password", ErrorMessage = "Passwords don't match")]
         [DataType(DataType.Password)]
-        [Display(Name = "Подтвердить пароль")]
         public string PasswordConfirm { get; set; }
     }
 }

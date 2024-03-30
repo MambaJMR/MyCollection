@@ -2,13 +2,13 @@
 <div class="container-fluid">
     <form asp-action="Update">
         <div>
-            <label>Name</label>
-            <input type="text" class="form-control w-25 mt-2" required name="name" />
+            <label>@Locolize.GetKey("Name")</label>
+            <input type="text" class="form-control w-50 mt-2" required name="name" />
         </div>
         <div>
-            <label>Description</label>
-            <input type="text" class="form-control w-25 mt-2" required name="description" />
+            <label>@Locolize.GetKey("Description")</label>
+            <input type="text" class="form-control w-50 mt-2" required name="description" />
         </div>
-        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+        <button type="submit" class="btn btn-primary mt-2">@Locolize.GetKey("Submit")</button>
     </form>
 </div>

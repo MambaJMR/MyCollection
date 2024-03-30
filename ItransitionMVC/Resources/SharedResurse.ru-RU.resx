@@ -117,7 +117,133 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Картинка" xml:space="preserve">
+  <data name="Block" xml:space="preserve">
+    <value>Заблокировать</value>
+  </data>
+  <data name="Books" xml:space="preserve">
+    <value>Книги</value>
+  </data>
+  <data name="Collection" xml:space="preserve">
+    <value>Коллекция</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Комментарии</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="Edit role for user" xml:space="preserve">
+    <value>Изменить роль пользователя</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="Foods" xml:space="preserve">
+    <value>Еда</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Игры</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Главная</value>
+  </data>
+  <data name="Image" xml:space="preserve">
     <value>Картинка</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>Элемент</value>
+  </data>
+  <data name="Likes" xml:space="preserve">
+    <value>Лайки</value>
+  </data>
+  <data name="Localization" xml:space="preserve">
+    <value>Локализация</value>
+  </data>
+  <data name="Logic" xml:space="preserve">
+    <value>Чекбокс</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="Movies" xml:space="preserve">
+    <value>Фильмы</value>
+  </data>
+  <data name="My colletions" xml:space="preserve">
+    <value>Мои коллекции</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="New collection" xml:space="preserve">
+    <value>Новая коллекция</value>
+  </data>
+  <data name="New item" xml:space="preserve">
+    <value>Новый элемент</value>
+  </data>
+  <data name="New Role" xml:space="preserve">
+    <value>Новая роль</value>
+  </data>
+  <data name="Not blocked" xml:space="preserve">
+    <value>Не заблокирован</value>
+  </data>
+  <data name="Nothing" xml:space="preserve">
+    <value>Ничего не найдено</value>
+  </data>
+  <data name="Numeric" xml:space="preserve">
+    <value>Числовое</value>
+  </data>
+  <data name="Optional field" xml:space="preserve">
+    <value>Дополнительное поле</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="Password Confirm" xml:space="preserve">
+    <value>Подтвердите пароль</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Запомнить</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Роль</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Роли</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Теги</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Текст</value>
+  </data>
+  <data name="Type Collection" xml:space="preserve">
+    <value>Тип коллекции</value>
+  </data>
+  <data name="UnBlock" xml:space="preserve">
+    <value>Разблокировать</value>
+  </data>
+  <data name="User List" xml:space="preserve">
+    <value>Список пользователей</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Пользователи</value>
   </data>
 </root>

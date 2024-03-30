@@ -2,15 +2,15 @@
 
 
 <div class="container-fluid">
-    <h1>New item</h1>
+    <h1>@Locolize.GetKey("New item")</h1>
     <form method="post" asp-controller="Item" asp-action="CreateItem" asp-route-collectionId="@Model.CollectionId">
         <div class="row">
             <div class="col-sm text-center">
-                <label>Name</label>
-                <input type="text" class="form-control mt-2" required placeholder="Name" name="name" />
-                <label>Description</label>
-                <input type="text" class="form-control mt-2" required placeholder="Description" name="description" />
-                <label>Tags</label>
+                <label>@Locolize.GetKey("Name")</label>
+                <input type="text" class="form-control mt-2" required name="name" />
+                <label>@Locolize.GetKey("Description")</label>
+                <input type="text" class="form-control mt-2" required name="description" />
+                <label>@Locolize.GetKey("Tags")</label>
                 <select id="tags" name="tags" class="form-control" multiple="multiple">
                 </select>
             </div>
@@ -43,7 +43,7 @@
                 }
             </div>
         </div>
-        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+        <button type="submit" class="btn btn-primary mt-2">@Locolize.GetKey("Submit")</button>
     </form>
 </div>
 

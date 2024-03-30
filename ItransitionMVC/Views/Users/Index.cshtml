@@ -1,8 +1,5 @@
 ﻿@model IEnumerable<ItransitionMVC.Models.CustomUser>
 @using Microsoft.AspNetCore.Identity;
-@{
-    ViewBag.Title = "Список пользователей";
-}
 
 <table class="table">
     <tr><th>Email</th><th></th></tr>
@@ -13,7 +10,7 @@
             <td>
                 @if(user.LockoutEnd is null)
                 {
-                    <p>Not blocked</p>
+                    <p>@Locolize.GetKey("Not blocked")</p>
                 }
                 else
                 {
@@ -21,13 +18,13 @@
                 }
             </td>
             <td>
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@user.Id">Delete</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@user.Id">@Locolize.GetKey("Delete")</a>
             </td>
             <td>
-                <a class="btn btn-sm btn-secondary" asp-action="Block" asp-route-id="@user.Id">Block</a>
+                <a class="btn btn-sm btn-secondary" asp-action="Block" asp-route-id="@user.Id">@Locolize.GetKey("Block")</a>
             </td>
             <td>
-                <a class="btn btn-secondary" asp-action="UnBlock" asp-route-id="@user.Id">UnBlock</a>
+                <a class="btn btn-secondary" asp-action="UnBlock" asp-route-id="@user.Id">@Locolize.GetKey("UnBlock")</a>
             </td>
         </tr>
     }

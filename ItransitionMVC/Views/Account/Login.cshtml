@@ -1,27 +1,25 @@
 ﻿@model ItransitionMVC.ModelViews.LoginViewModel
-@using Microsoft.AspNetCore.Mvc.Localization;
-@inject IViewLocalizer Localizer
 <div class="container-fluid row">
-    <h2>@Localizer["Login"]</h2>
+    <h2>@Locolize.GetKey("Login")</h2>
     <form method="post" asp-controller="Account" asp-action="Login">
-       <div class="col-sm">
+        <div class="row d-flex justify-content-center align-items-center h-100">
             <div asp-validation-summary="ModelOnly"></div>
-            <div>
-                <label asp-for="Email" class="form-label "></label><br />
+            <div class="">
+                <label asp-for="Email" class="form-label"></label><br />
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email"></span>
             </div>
-            <div>
-                <label asp-for="Password" class="form-label"></label><br />
+            <div class="">
+                <label asp-for="Password" class="form-label">@Locolize.GetKey("Password")</label><br />
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password"></span>
             </div>
-            <div>
-                <label asp-for="RememberMe"></label><br />
+            <div class="">
+                <label asp-for="RememberMe">@Locolize.GetKey("RememberMe")</label><br />
                 <input asp-for="RememberMe" />
             </div>
-            <div>
-                <input type="submit" class="btn btn-primary m-2" value="Enter" />
+            <div class="">
+                <input type="submit" class="btn btn-primary m-2" value="@Locolize.GetKey("Login")" />
             </div>
        </div>
     </form>

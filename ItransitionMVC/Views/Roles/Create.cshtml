@@ -5,10 +5,10 @@
 
     <form asp-action="Create" method="post">
         <div class="form-group">
-            <label for="name">Новая роль</label>
+            <label for="name">@Locolize.GetKey("New Role")</label>
             <input name="name" class="form-control" />
         </div>
-        <button type="submit" class="btn btn-primary">Добавить</button>
+        <button type="submit" class="btn btn-primary">@Locolize.GetKey("Submit")</button>
     </form>
 </div>
 
