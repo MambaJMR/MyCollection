@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ItransitionMVC.Models.Item.CustomCollectionItem>;
+    <div class="container-fluid">
+        <div>
+            <table class=" table">
+                <thead>
+                    <tr>
+                        <th scope="col">@Locolize.GetKey("Likes")</th>
+                        <th scope="col">@Locolize.GetKey("Name")</th>
+                        <th scope="col">@Locolize.GetKey("Edit")</th>
+                        <th scope="col">@Locolize.GetKey("Delete")</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <h4>@item.ItemLikes?.Count()</h4>
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" asp-controller="Home" asp-action="ItemView" asp-route-id="@item.Id">@item.Name</a>
+                            </td>
+                            <td>
+                            <a class="btn btn-primary" asp-controller="Item" asp-action="Update" asp-route-id="@item.Id" asp-route-collectionId="@item.Id">@Locolize.GetKey("Edit")</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" asp-controller="Item" asp-action="Delete" asp-route-id="@item.Id">@Locolize.GetKey("Delete")</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+    let markText = document.getElementById("Description");
+    let text = markText.textContent
+    console.log(text);
+    markText.innerHTML = marked.parse(text)
+
+</script>

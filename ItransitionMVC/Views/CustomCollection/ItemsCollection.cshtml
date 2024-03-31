@@ -2,6 +2,7 @@
 
 <div class="container-fluid">
     <a class="btn btn-success mt-2" asp-controller="Item" asp-action="CreateItem" asp-route-id="@Model.Id">@Locolize.GetKey("New item")</a>
+    <a class="btn btn-success mt-2" asp-controller="CustomCollection" asp-action="OrderByViewItems" asp-route-id="@Model.Id">@Locolize.GetKey("Sort by number of likes")</a>
     <div id="Description">@Model.Description</div>
     <table class=" table">
         <thead>

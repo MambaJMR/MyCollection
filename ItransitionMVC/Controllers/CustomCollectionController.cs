@@ -2,6 +2,7 @@
 using ItransitionMVC.Interfaces.IElementService;
 using ItransitionMVC.Interfaces.IItem;
 using ItransitionMVC.Models;
+using ItransitionMVC.Models.Collection;
 using ItransitionMVC.ModelViews;
 using ItransitionMVC.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -41,12 +42,18 @@ namespace ItransitionMVC.Controllers
             return View(collections);
         }
         [HttpGet]
-
         public async Task<IActionResult> ItemsCollection(Guid id)
         {
             var collection = await _customCollectionService.GetCollectionById(id);
             
             return View(collection);
+        }
+        [HttpGet]
+        public async Task<IActionResult> OrderByViewItems(Guid id)
+        {
+            var collections = await _customCollectionService.GetCollectionById(id);
+            var orderByLikes = collections.Items.OrderByDescending(p => p.ItemLikes.Count);
+            return View(orderByLikes);
         }
         [HttpGet]
         public IActionResult CreateCollection()
@@ -86,5 +93,7 @@ namespace ItransitionMVC.Controllers
             await _customCollectionService.DeleteCustomCollection(id);
             return RedirectToAction("Index", "Home");
         }
+
+        
     }
 }

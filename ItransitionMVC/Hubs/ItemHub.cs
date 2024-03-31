@@ -29,7 +29,7 @@ namespace ItransitionMVC.Hubs
             var item = await _itemRepository.GetById(Guid.Parse(itemId));
             CheckLikes(userName, item);
 
-            var likeCount = item.ItemLikes?.Count;
+            var likeCount = item.ItemLikes?.Count();
             var userLike = item.ItemLikes?.Where(x => x.UserId == userName).Count();
 
             await Clients.All.SendAsync("Likes", likeCount, userLike);

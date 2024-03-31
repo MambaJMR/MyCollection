@@ -19,6 +19,7 @@ namespace ItransitionMVC.Repositories
         {
             var item = await _context.Collections.AsNoTracking()
                 .Include(c => c.Items)
+                .ThenInclude(x => x.ItemLikes)
                 .Include(x => x.ItemElements)
                 .Include(x => x.ItemIntElements)
                 .Include(x => x.ItemBoolElements)
@@ -29,14 +30,16 @@ namespace ItransitionMVC.Repositories
 
         public async Task<List<CustomCollection>> GetUserCollections(string userId)
         {
-            
+
             var collection = await _context.Collections.AsNoTracking()
                 .Where(x => x.UserName == userId)
                 .Include(x => x.Items)
+                .ThenInclude(x => x.ItemLikes)
                 .Include(x => x.ItemElements)
                 .Include(x => x.ItemIntElements)
                 .Include(x => x.ItemBoolElements)
                 .Include(x => x.ItemDateElements)
+                
                 .ToListAsync();
             return collection;
         }
