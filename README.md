@@ -26,7 +26,7 @@
 ### Скриншоты приложения
 #### Главная страница "Вид от лица админа"
 ![Главная](https://github.com/MambaJMR/ProjectItransition/blob/master/%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F.png)
-#### Админ палнель
+#### Админ панель
 ![Админ панель](https://github.com/MambaJMR/ProjectItransition/blob/master/%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%20%D0%BF%D0%B0%D0%BD%D0%B5%D0%BB%D1%8C.png)
 #### Страница айтема
 ![Айтем](https://github.com/MambaJMR/ProjectItransition/blob/master/%D0%90%D0%B9%D1%82%D0%B5%D0%BC.png)
@@ -35,4 +35,4 @@
 #### Страница создания коллекции с демонстрацией markdown разметки
 ![markdown](https://github.com/MambaJMR/ProjectItransition/blob/master/Markdown.png)
 
-## P.S., Все подключенные api использовал бесплатные пробные версии. Некоторый функционал мог отвалиться из-за окончания бесплатного периода
+## P.S., Все подключенные api использовал пробные версии. Некоторый функционал мог отвалиться из-за окончания тестового периода.
