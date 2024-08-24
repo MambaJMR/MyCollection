@@ -1,6 +1,0 @@
-@ProjectItransition_HostAddress = http://localhost:5121
-
-GET {{ProjectItransition_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
